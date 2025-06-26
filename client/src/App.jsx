@@ -18,6 +18,8 @@ import Releases from './pages/Releases';
 import { useAppContext } from './context/AppContext';
 import { SignIn } from '@clerk/clerk-react';
 import Loading from './components/Loading';
+import Ai from './components/Ai';
+import AboutHome from './components/About/AboutHome';
 
 const App = () => {
   const location = useLocation();
@@ -38,6 +40,7 @@ const App = () => {
         <Route path='/movies/:id' element={<MovieDetails />} />
         <Route path='/my-bookings' element={<MyBooking />} />
         <Route path='/loading/:nextUrl' element={<Loading />} />
+        <Route path='/about' element={<AboutHome />} />
         
         <Route path='/movies/:id/:date' element={<SeatLayout />} />
 
@@ -53,6 +56,8 @@ const App = () => {
           <Route path='list-bookings' element={<ListBookings />} />
         </Route>
       </Routes>
+     
+      {!isAdminRoute && <Ai />}
       {!isAdminRoute && <Footer />}
     </>
   );

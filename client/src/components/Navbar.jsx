@@ -30,15 +30,18 @@ const Navbar = () => {
         <button className="hover:text-primary transition" onClick={() => handleNavClick("/")}>
           Home
         </button>
+        <button className="hover:text-primary transition" onClick={() => handleNavClick("/about")}>
+          About
+        </button>
         <button className="hover:text-primary transition" onClick={() => handleNavClick("/movies")}>
           Movies
         </button>
         {/* <button className="hover:text-primary transition" onClick={() => handleNavClick("/theaters")}>
           Theaters
         </button> */}
-        <button className="hover:text-primary transition" onClick={() => handleNavClick("/releases")}>
+        {/* <button className="hover:text-primary transition" onClick={() => handleNavClick("/releases")}>
           Releases
-        </button>
+        </button> */}
         {favoriteMovies.length > 0 && <button className="hover:text-primary transition" onClick={() => handleNavClick("/favorite")}>
           Favorites
         </button>}
