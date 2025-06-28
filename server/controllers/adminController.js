@@ -47,16 +47,24 @@ export const getAllShows = async (req, res) =>{
 
 
 //API to get All bookings
-export const getAllBookings = async (req, res) =>{
-    try {
-    const bookings = await Booking.find({}).populate('user').populate({
-        path: "show",
-        populate: {path: "movie"}
-    }).sort({ createdAt: -1})
-    res.json({success: true, bookings })
+export const getAllBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find({})
+      .populate('user')
+      .populate({
+        path: 'show',
+        populate: { path: 'movie' }
+      })
+      .sort({ createdAt: -1 });
 
-    } catch (error) {
+    // Filter out bookings where show or movie is missing
+    const validBookings = bookings.filter(
+      booking => booking.show && booking.show.movie
+    );
+
+    res.json({ success: true, bookings: validBookings });
+  } catch (error) {
     console.error(error);
-    res.json({success: false, message: error.message})
-    }
-}
+    res.json({ success: false, message: error.message });
+  }
+};

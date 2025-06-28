@@ -4,6 +4,7 @@ import { assets } from '../assets/assets';
 import { MenuIcon, SearchIcon, TicketsIcon, XIcon } from 'lucide-react';
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
 import { useAppContext } from '../context/AppContext';
+import { motion } from 'motion/react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,13 +20,16 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-4">
-      {/* Logo */}
+    <motion.div 
+    initial= {{y:-20, opacity:0}}
+    animate= {{y:-0, opacity:1}}
+    transition={{duration: 0.5}}
+    className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-4">
+      
       <Link to="/" className="max-md:flex-1" onClick={() => window.scrollTo(0, 0)}>
-        <img src={assets.logo} alt="Logo" className="w-36 h-auto" />
+        <motion.img whileHover= {{scale: 1.05}}src={assets.logo} alt="Logo" className="w-36 h-auto" />
       </Link>
 
-      {/* Nav Links in Rounded Container */}
       <div className="hidden md:flex bg-white/10 backdrop-blur-md px-6 py-2 rounded-full text-sm text-white gap-6 font-medium">
         <button className="hover:text-primary transition" onClick={() => handleNavClick("/")}>
           Home
@@ -47,7 +51,6 @@ const Navbar = () => {
         </button>}
       </div>
 
-      {/* Right Icons */}
       <div className="flex items-center gap-4">
         <SearchIcon className="w-5 h-5 text-white cursor-pointer" />
         {!user ? (
@@ -73,13 +76,11 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Mobile Menu Icon */}
       <MenuIcon
         className="ml-4 md:hidden w-6 h-6 text-white cursor-pointer"
         onClick={() => setIsOpen(true)}
       />
 
-      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/80 backdrop-blur flex flex-col items-center justify-center z-50">
           <XIcon
@@ -95,7 +96,7 @@ const Navbar = () => {
           </nav>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
