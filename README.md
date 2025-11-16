@@ -32,6 +32,7 @@ Backend
 7. JWT Auth (for admin + protected routes)
 
 ✨ Features
+
 👥 User Module
 
 1. Login & Signup using Clerk Authentication
@@ -83,6 +84,7 @@ Backend
 5. View users, revenue & analytics
 
 🧭 How It Works
+
 1️⃣ User Authentication (Clerk)
 
 1. Fully managed Auth
